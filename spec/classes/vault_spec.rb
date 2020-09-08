@@ -296,7 +296,7 @@ describe 'vault' do
         }
       end
 
-      context 'when specifying manage_storage_dir' do
+      context 'when specifying manage_storage_dir and file storage backend' do
         let(:params) do
           {
             manage_storage_dir: true,
@@ -313,6 +313,26 @@ describe 'vault' do
             .with_ensure('directory')
             .with_owner('vault')
             .with_group('vault')
+        }
+      end
+
+      context 'when specifying manage_storage_dir and raft storage backend' do
+        let(:params) do
+          {
+            manage_storage_dir: true,
+            storage: {
+              'raft' => {
+                'path' => '/data/vault'
+              }
+            }
+          }
+        end
+
+        it {
+          is_expected.to contain_file('/data/vault').
+            with_ensure('directory').
+            with_owner('vault').
+            with_group('vault')
         }
       end
 
