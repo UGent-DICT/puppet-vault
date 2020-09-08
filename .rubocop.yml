@@ -23,7 +23,7 @@ Lint/ElseLayout:
 Lint/UnreachableCode:
   Enabled: True
 
-Lint/UselessComparison:
+Lint/BinaryOperatorWithIdenticalOperands:
   Enabled: True
 
 Lint/EnsureReturn:
